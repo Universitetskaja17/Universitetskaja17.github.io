@@ -1,0 +1,84 @@
+/* Дополнения к стилям шаблона Alpha */
+
+/* Замена устаревшего тега <nobr> */
+.nowrap {
+  white-space: nowrap;
+}
+
+/* На десктопе мобильные элементы скрыты */
+@media screen and (min-width: 841px) {
+  #navButton,
+  #navPanel,
+  #navOverlay {
+    display: none !important;
+  }
+}
+
+/* Кнопка-бургер: убираем дефолтную рамку у <button> */
+#navButton .toggle {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* Мобильная панель навигации. В шаблоне её открывал jQuery-плагин panel,
+   который сдвигал всю страницу (#page-wrapper) вбок — эффект «ящика».
+   Нам нужно, чтобы двигалась ТОЛЬКО панель, а контент оставался на месте. */
+@media screen and (max-width: 840px) {
+  #navButton,
+  #navPanel {
+    display: block;
+  }
+
+  /* Отключаем сдвиг страницы и кнопки — едет только панель. */
+  body.navPanel-visible #page-wrapper,
+  body.navPanel-visible #navButton {
+    -moz-transform: none !important;
+    -webkit-transform: none !important;
+    -ms-transform: none !important;
+    transform: none !important;
+  }
+
+  /* Закрываем прокрутку фона, пока меню открыто. */
+  body.navPanel-visible {
+    overflow: hidden;
+  }
+
+  #navOverlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.4);
+  }
+
+  body.navPanel-visible #navOverlay {
+    display: block;
+  }
+
+  #navPanel {
+    z-index: 10000;
+  }
+
+  #navButton {
+    z-index: 10001;
+  }
+
+  /* Иконка-бургер поверх панели: при открытом меню превращается в крестик. */
+  #navButton .toggle:before {
+    content: '\f0c9';
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  body.navPanel-visible #navButton .toggle:before {
+    content: '\f00d';
+    background: rgba(120, 120, 120, 0.9);
+  }
+
+  /* Кнопка-крестик лежит поверх панели и занимает верхние ~44px слева,
+     перекрывая первый пункт меню. Сдвигаем список вниз, чтобы ВСЕ пункты
+     были кликабельны (крестик остаётся над панелью, как кнопка закрытия). */
+  #navPanel nav {
+    padding-top: 3.5em; /* 56px: 8px отступ плашки + 36px высота + 12px зазор */
+  }
+}
