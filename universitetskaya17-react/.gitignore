@@ -2,3 +2,11 @@ node_modules
 dist
 .DS_Store
 *.local
+
+# тестовые артефакты
+demo-shots/
+pv.log
+pv.err
+dev.log
+dev.err
+*.log

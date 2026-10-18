@@ -5,6 +5,12 @@
   white-space: nowrap;
 }
 
+/* Иконка мессенджера MAX в футере.
+   fa-comment-dots — из набора Font Awesome 5 Free (solid), поэтому weight 900. */
+.icon.fa-comment-dots:before {
+  font-weight: 900;
+}
+
 /* На десктопе мобильные элементы скрыты */
 @media screen and (min-width: 841px) {
   #navButton,
